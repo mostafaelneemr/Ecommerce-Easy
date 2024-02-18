@@ -63,7 +63,7 @@
                                     <div class="form-group">
                                         <h5>Category Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="category_id" class="form-control" >
+                                            <select name="category_id" class="form-control ">
                                                 <option value="" selected disabled>Select Your Category</option>
                                                 @foreach($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->category_name_en }}</option>
@@ -107,4 +107,11 @@
             </div><!-- /.row -->
         </section><!-- /.content -->
     </div>
+@endsection
+
+@section('script')
+
+    <script>
+        $('.select').select2();
+    </script>
 @endsection

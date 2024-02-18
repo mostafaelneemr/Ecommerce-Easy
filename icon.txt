@@ -1,0 +1,9 @@
+fa fa-shopping-bag
+fa fa-laptop
+fa fa-paw
+fa fa-clock-o
+fa fa-diamond
+fa fa-heartbeat
+fa fa-paper-plane
+fa fa-futbol-o
+fa fa-envira
