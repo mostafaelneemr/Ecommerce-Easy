@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryFormRequest;
 use App\Models\Backend\Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+
 
 class CategoryController extends Controller
 {
@@ -15,14 +15,8 @@ class CategoryController extends Controller
         return view('backend.category.category_view', compact('category'));
     }
 
-    public function CategoryStore(Request $request)
+    public function CategoryStore(CategoryFormRequest $request)
     {
-        $request->validate([
-            'category_name_en' => 'required',
-            'category_name_ar' => 'required',
-            'category_icon' => 'required',
-            ]);
-
         try {
             Category::insert([
                'category_name_en' => $request->category_name_en,
@@ -49,14 +43,9 @@ class CategoryController extends Controller
         return view('backend.category.category_edit', compact('category'));
     }
 
-    public function CategoryUpdate(Request $request)
+    public function CategoryUpdate(CategoryFormRequest $request)
     {
         $category_id = $request->id;
-        $request->validate([
-            'category_name_en' => 'required',
-            'category_name_ar' => 'required',
-            'category_icon' => 'required',
-        ]);
 
         Category::findOrFail($category_id)->Update([
             'category_name_en' => $request->category_name_en,

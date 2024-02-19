@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubSubCategoryFormRequest;
 use App\Models\Backend\Category;
 use App\Models\Backend\SubCategory;
 use App\Models\Backend\SubSubCategory;
@@ -17,14 +18,8 @@ class SubSubCategoryController extends Controller
         return view('backend.category.sub_subcategory_view', compact('categories', 'subsubcategory'));
     }
 
-    public function SubSubCategoryStore(Request $request)
+    public function SubSubCategoryStore(SubSubCategoryFormRequest $request)
     {
-        $request->validate([
-            'category_id' => 'required',
-            'subcategory_id' => 'required',
-            'subsubcategory_name_en' => 'required',
-            'subsubcategory_name_ar' => 'required',
-        ]);
         try {
         subsubcategory::insert([
             'category_id' => $request->category_id,
@@ -53,7 +48,7 @@ class SubSubCategoryController extends Controller
         return view('backend.category.sub_subcategory_edit', compact('categories', 'subcategories', 'subsubcategories'));
     }
 
-    public function SubSubCategoryUpdate(Request $request)
+    public function SubSubCategoryUpdate(SubSubCategoryFormRequest $request)
     {
         $subsubcat_id = $request->id;
 

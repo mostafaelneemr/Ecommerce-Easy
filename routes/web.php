@@ -133,4 +133,3 @@ Route::controller(IndexController::class)->prefix('user')->group(function () {
     Route::get('/change/password', 'UserChangePassword')->name('change.password');
     Route::post('/password/update', 'UserPasswordUpdate')->name('user.password.update');
 });
-

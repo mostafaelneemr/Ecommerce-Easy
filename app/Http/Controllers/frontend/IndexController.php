@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\frontend;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Category;
@@ -15,8 +15,8 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get(); 
-        $sliders = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get(); 
+        $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get();
+        $sliders = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
         return view('frontend.index', compact('categories', 'sliders', 'products'));
     }

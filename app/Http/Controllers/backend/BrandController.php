@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BrandFormRequest;
 use App\Models\Backend\Brand;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -15,13 +16,9 @@ class BrandController extends Controller
         return view('backend.brand.brand_view',compact('brands'));
     }
 
-    public function BrandStore(Request $request)
+    public function BrandStore(BrandFormRequest $request)
     {
-        $request->validate([
-            'brand_name_en' => 'required',
-            'brand_name_ar' => 'required',
-            'brand_image' => 'required',
-        ]);
+
         try {
             $image = $request->file('brand_image');
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -51,7 +48,7 @@ class BrandController extends Controller
         return view('backend.brand.brand_edit',compact('brand'));
     }
 
-    public function BrandUpdate(Request $request)
+    public function BrandUpdate(BrandFormRequest $request)
     {
         $brand_id = $request->id;
         $old_img = $request->old_image;
